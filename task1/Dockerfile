@@ -7,5 +7,14 @@ RUN apt-get update  && \
     apt-get install -y python3 python3-pip && \
     pip3 install Flask
 
+# Set the working directory in the container.
+WORKDIR /app
+
+# Copy the python file to the working directory.
+COPY api.py /app/api.py
+
+# Expose port 5252 to the outside world.
+EXPOSE 5252
+
 # Set the command to run when the container starts.
-CMD [ "/bin/echo", "Hello, World!" ]
+CMD [ "python3", "api.py" ]
